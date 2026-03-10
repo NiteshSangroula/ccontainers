@@ -42,8 +42,8 @@ void my_string_clear(my_string* str);
 /***************************************************/
 // C. CONCATENATION
 /***************************************************/
-// int my_string_append(my_string* dest, const my_string* src);
-// int my_string_append_cstr(my_string* str, const char* cstr);
+int my_string_append(my_string* dest, const my_string* src);
+int my_string_append_cstr(my_string* str, const char* cstr);
 
 /***************************************************/
 // D. ACCESS

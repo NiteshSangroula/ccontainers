@@ -129,6 +129,39 @@ void test_clear() {
     my_string_free(&str);
 }
 
+void test_append_loose() {
+    my_string dest;
+    my_string_init(&dest);
+
+    my_string src;
+    my_string_from_cstr(&src, "Hello");
+
+    my_string_append(&dest, &src);
+
+    assert(strcmp(dest.data, src.data) == 0);
+    assert(dest.size == src.size);
+
+    my_string_free(&dest);
+    my_string_free(&src);
+}
+
+void test_append_tight() {
+    my_string dest;
+    my_string_from_cstr(&dest, "Ay");
+
+    my_string src;
+    my_string_from_cstr(&src, "There");
+
+    my_string_append(&dest, &src);
+
+    assert(strcmp(dest.data, "AyThere") == 0);
+    assert(dest.size == 7);
+    assert(dest.capacity >= 8);
+
+    my_string_free(&dest);
+    my_string_free(&src);
+}
+
 int main() {
     RUN_TEST(test_create);
     RUN_TEST(test_create_from_cstr);
@@ -139,6 +172,8 @@ int main() {
     RUN_TEST(test_pop_back);
     RUN_TEST(test_pop_back_empty);
     RUN_TEST(test_clear);
+    RUN_TEST(test_append_loose);
+    RUN_TEST(test_append_tight);
 
     printf("All tests passed!\n");
     return 0;

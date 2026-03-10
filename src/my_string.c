@@ -87,3 +87,35 @@ void my_string_clear(my_string* str) {
     str->size = 0;
     str->data[0] = '\0';
 }
+
+// to append my_string
+int my_string_append(my_string* dest, const my_string* src) {
+    if (dest == NULL || src == NULL) return -1;
+
+    size_t total_size = dest->size + src->size;
+
+    if (dest->capacity < total_size + 1) {
+        size_t new_capacity = total_size + 1;
+
+        char* temp = realloc(dest->data, new_capacity);
+        if (temp == NULL) return -1;
+
+        dest->data = temp;
+        dest->capacity = new_capacity;
+    }
+
+    for (size_t i = 0; i < src->size; i++) {
+        dest->data[dest->size + i] = src->data[i];
+    }
+    dest->size = total_size;
+    dest->data[dest->size] = '\0';
+
+    return 0;
+}
+
+// to append c-style string
+int my_string_append_cstr(my_string* str, const char* cstr) {
+    if (str == NULL || cstr == NULL) return -1;
+
+    return 0;
+}
