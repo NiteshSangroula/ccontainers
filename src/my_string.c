@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// 1. to create an empty string
+// to create an empty string
 int my_string_init(my_string* str) {
     if (str == NULL) return -1;
 
@@ -19,6 +19,7 @@ int my_string_init(my_string* str) {
     return 0;
 }
 
+// to create a my_string from cstr
 int my_string_from_cstr(my_string* str, const char* cstr) {
     if (str == NULL || cstr == NULL) return -1;
 
@@ -38,6 +39,17 @@ int my_string_from_cstr(my_string* str, const char* cstr) {
     return 0;
 }
 
+// destroy the string
+void my_string_free(my_string* str) {
+    if (str == NULL) return;
+
+    free(str->data);
+    str->data = NULL;
+    str->size = 0;
+    str->capacity = 0;
+}
+
+// to push back a character
 int my_string_push_back(my_string* str, char ch) {
     if (str == NULL) return -1;
 
@@ -58,11 +70,20 @@ int my_string_push_back(my_string* str, char ch) {
     return 0;
 }
 
-void my_string_free(my_string* str) {
-    if (str == NULL) return;
+// to pop back a character
+int my_string_pop_back(my_string* str) {
+    if (str == NULL) return -1;
+    if (str->size == 0) return -1;
 
-    free(str->data);
-    str->data = NULL;
+    str->size--;
+    str->data[str->size] = '\0';
+
+    return 0;
+}
+
+// to clear my_string
+void my_string_clear(my_string* str) {
+    if (str == NULL) return;
     str->size = 0;
-    str->capacity = 0;
+    str->data[0] = '\0';
 }
