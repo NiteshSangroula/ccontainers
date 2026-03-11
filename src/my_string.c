@@ -140,17 +140,7 @@ int my_string_append_cstr(my_string* str, const char* cstr) {
 }
 
 // to return a cstyle string
-const char* my_string_cstr(const my_string* str) {
-    if (str == NULL) return NULL;
-
-    char* cstr = malloc(str->size + 1);
-
-    for (size_t i = 0; i < str->size; i++) {
-        cstr[i] = str->data[i];
-    }
-
-    return cstr;
-}
+const char* my_string_cstr(const my_string* str) { return str->data; }
 
 // to return the length
 size_t my_string_length(const my_string* str) { return str->size; }
