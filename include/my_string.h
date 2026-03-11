@@ -48,8 +48,8 @@ int my_string_append_cstr(my_string* str, const char* cstr);
 /***************************************************/
 // D. ACCESS
 /***************************************************/
-// const char* my_string_c_str(const my_string* str);
-// size_t my_string_length(const my_string* str);
-// char my_string_at(const my_string* str, size_t index);
+const char* my_string_cstr(const my_string* str);
+size_t my_string_length(const my_string* str);
+char my_string_at(const my_string* str, size_t index);
 
 #endif  // !MY_STRING_H

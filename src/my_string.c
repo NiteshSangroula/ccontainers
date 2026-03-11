@@ -117,5 +117,47 @@ int my_string_append(my_string* dest, const my_string* src) {
 int my_string_append_cstr(my_string* str, const char* cstr) {
     if (str == NULL || cstr == NULL) return -1;
 
+    size_t len = strlen(cstr);
+    size_t total_size = str->size + len;
+
+    if (str->capacity < total_size + 1) {
+        size_t new_capacity = total_size + 1;
+
+        char* temp = realloc(str->data, new_capacity);
+        if (temp == NULL) return -1;
+
+        str->data = temp;
+        str->capacity = new_capacity;
+    }
+
+    for (size_t i = 0; i < len; i++) {
+        str->data[str->size + i] = cstr[i];
+    }
+    str->size = total_size;
+    str->data[str->size] = '\0';
+
     return 0;
+}
+
+// to return a cstyle string
+const char* my_string_cstr(const my_string* str) {
+    if (str == NULL) return NULL;
+
+    char* cstr = malloc(str->size + 1);
+
+    for (size_t i = 0; i < str->size; i++) {
+        cstr[i] = str->data[i];
+    }
+
+    return cstr;
+}
+
+// to return the length
+size_t my_string_length(const my_string* str) { return str->size; }
+
+// to return char at that index
+char my_string_at(const my_string* str, size_t index) {
+    if (str == NULL || str->size <= index) return '\0';
+
+    return str->data[index];
 }
