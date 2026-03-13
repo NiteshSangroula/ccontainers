@@ -13,9 +13,9 @@ typedef struct {
 
 // core
 int my_vector_init(my_vector* v);
-int vector_push(my_vector* v, void* element);
-void* vector_get(my_vector* v, size_t index);
-int vector_set(my_vector* v, size_t index, void* element);
-void vector_free(my_vector* v);
+int my_vector_push(my_vector* v, void* element);
+void* my_vector_get(my_vector* v, size_t index);
+int my_vector_set(my_vector* v, size_t index, void* element);
+void my_vector_free(my_vector* v);
 
 #endif  // !MY_VECTOR_H

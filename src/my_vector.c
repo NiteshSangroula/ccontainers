@@ -13,7 +13,7 @@ int my_vector_init(my_vector* v) {
     return 0;
 }
 
-int vector_push(my_vector* v, void* element) {
+int my_vector_push(my_vector* v, void* element) {
     if (v == NULL) return -1;
     if (v->size == v->capacity) {
         size_t new_capacity = v->capacity * 2;
@@ -26,14 +26,14 @@ int vector_push(my_vector* v, void* element) {
     return 0;
 }
 
-void* vector_get(my_vector* v, size_t index) {
+void* my_vector_get(my_vector* v, size_t index) {
     if (v == NULL) return NULL;
 
     if (index > v->size) return NULL;
     return v->data[index];
 }
 
-int vector_set(my_vector* v, size_t index, void* element) {
+int my_vector_set(my_vector* v, size_t index, void* element) {
     if (v == NULL) return -1;
 
     if (index >= v->size) return -1;
@@ -41,7 +41,7 @@ int vector_set(my_vector* v, size_t index, void* element) {
     return 0;
 }
 
-void vector_free(my_vector* v) {
+void my_vector_free(my_vector* v) {
     if (v == NULL) return;
 
     free(v->data);
